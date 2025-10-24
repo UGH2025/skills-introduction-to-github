@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Complex Text Summarizer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Complex Text Summarizer</h1>
+    <p class="subtitle">Paste any text, choose a length, get a clear summary.</p>
+  </header>
+
+  <main class="container">
+    <section class="panel input-panel" aria-labelledby="input-heading">
+      <div class="panel-header">
+        <h2 id="input-heading">Input</h2>
+        <div class="controls">
+          <label for="ratio">Summary length:</label>
+          <select id="ratio" aria-label="Summary length">
+            <option value="0.1">10%</option>
+            <option value="0.15">15%</option>
+            <option value="0.2" selected>20%</option>
+            <option value="0.25">25%</option>
+            <option value="0.33">~1/3</option>
+          </select>
+          <label for="strategy">Strategy:</label>
+          <select id="strategy" aria-label="Summarization strategy">
+            <option value="frequency" selected>Frequency (extractive)</option>
+            <option value="textrank">TextRank (graph)</option>
+          </select>
+          <button id="summarizeBtn" class="primary">Summarize</button>
+        </div>
+      </div>
+      <textarea id="inputText" placeholder="Paste complex text here..." rows="14" aria-label="Input text"></textarea>
+      <div class="hints">
+        <button id="loadSample" class="ghost">Load sample</button>
+        <button id="clearInput" class="ghost">Clear</button>
+      </div>
+    </section>
+
+    <section class="panel output-panel" aria-labelledby="output-heading">
+      <div class="panel-header">
+        <h2 id="output-heading">Summary</h2>
+        <div class="controls">
+          <button id="copySummary" class="secondary">Copy</button>
+          <button id="downloadSummary" class="secondary">Download</button>
+        </div>
+      </div>
+      <div id="summary" class="summary" role="region" aria-live="polite"></div>
+
+      <div class="metrics" aria-labelledby="metrics-heading">
+        <h3 id="metrics-heading">Metrics</h3>
+        <div class="metrics-grid">
+          <div class="metric"><span class="label">Sentences:</span><span id="mSentences" class="value">0</span></div>
+          <div class="metric"><span class="label">Words:</span><span id="mWords" class="value">0</span></div>
+          <div class="metric"><span class="label">Chars:</span><span id="mChars" class="value">0</span></div>
+          <div class="metric"><span class="label">Flesch-Kincaid:</span><span id="mFk" class="value">-</span></div>
+          <div class="metric"><span class="label">Reading time:</span><span id="mReadTime" class="value">0s</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <span>Local, private, and fast. No server required.</span>
+    <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+  </footer>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
